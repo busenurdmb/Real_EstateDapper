@@ -1,0 +1,49 @@
+﻿
+@model List<ResultTestimonialDtos>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5 justify-content-center">
+            <div class="col-md-7">
+                <div class="site-section-title text-center">
+                    <h2>Temsilcilerimiz</h2>
+                    <p>
+                        Profesyonel ekibimiz, emlak sektöründeki engin deneyimleri ve geniş bilgi birikimleriyle size mükemmel hizmet sunar. Her bir danışmanımız, müşterilerimizin ihtiyaçlarını anlamak ve en iyi sonuçları elde etmek için özveriyle çalışır. Güvenilirlik, şeffaflık ve müşteri memnuniyeti bizim önceliğimizdir. Sizin için en uygun mülkleri bulmak ve sorunsuz bir deneyim yaşamanızı sağlamak için buradayız.
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
+                <div class="team-member">
+
+                    <img src="@item.ImageUrl" alt="Image" class="img-fluid rounded mb-4">
+
+                    <div class="text">
+
+                        <h2 class="mb-2 font-weight-light text-black h4">@item.CustomerName</h2>
+                        <span class="d-block mb-3 text-white-opacity-05">@item.Title</span>
+                        <p>@item.Description</p>
+                        <p>
+                            <a href="#" class="text-black p-2"><span class="icon-facebook"></span></a>
+                            <a href="#" class="text-black p-2"><span class="icon-twitter"></span></a>
+                            <a href="#" class="text-black p-2"><span class="icon-linkedin"></span></a>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            }
+            
+
+            
+
+
+
+        </div>
+    </div>
+</div>
+

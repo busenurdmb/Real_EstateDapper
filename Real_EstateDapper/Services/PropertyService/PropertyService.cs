@@ -76,7 +76,13 @@ namespace Real_EstateDapper.Services.PropertyService
 
         public async Task<GetByIdPropertyDto> GetByIdPropertyAsync(int id)
         {
-            const string query = "SELECT * FROM Properties WHERE Id = @Id";
+            const string query = @"
+        SELECT p.Id, p.Price, p.Beds, p.Baths, p.SqFt, p.YearBuilt, p.PricePerSqFt, p.Description, 
+               p.CategoryId, p.ImagePropertyId, p.CreatedAt, p.ImageUrl, p.Adreess, p.Title, p.OfferType,
+               c.CategoryName
+        FROM Properties p
+        INNER JOIN Categories c ON p.CategoryId = c.Id
+        WHERE p.Id = @Id";
 
             var parameters = new DynamicParameters();
             parameters.Add("@Id", id);
@@ -85,6 +91,7 @@ namespace Real_EstateDapper.Services.PropertyService
             var property = await connection.QueryFirstOrDefaultAsync<GetByIdPropertyDto>(query, parameters);
             return property;
         }
+
 
         public async Task<int> GetPropertyCountAsync()
         {
@@ -117,5 +124,58 @@ namespace Real_EstateDapper.Services.PropertyService
             using var connection = _context.CreateConnection();
             await connection.ExecuteAsync(query, parameters);
         }
+
+        public async Task<List<ResultPropertyDto>> GetFilteredProperties(int? categoryId, string offerType, string city)
+        {
+            // Başlangıç sorgusu
+            var query = "SELECT * FROM Properties WHERE 1=1";
+
+            // Sorgu parametreleri
+            var parameters = new DynamicParameters();
+
+            // Kategori filtresi
+            if (categoryId.HasValue)
+            {
+                query += " AND CategoryId = @CategoryId";
+                parameters.Add("@CategoryId", categoryId.Value); // categoryId yerine categoryId.Value kullanılır
+            }
+
+            // Teklif türü filtresi
+            if (!string.IsNullOrEmpty(offerType))
+            {
+                query += " AND OfferType = @OfferType";
+                parameters.Add("@OfferType", offerType);
+            }
+
+            // Şehir filtresi
+            if (!string.IsNullOrEmpty(city))
+            {
+                query += " AND Adreess = @City";
+                parameters.Add("@City", city);
+            }
+
+            // Veritabanı bağlantısını oluştur
+            using var connection = _context.CreateConnection();
+
+            // Sorguyu çalıştır ve sonuçları al
+            var properties = await connection.QueryAsync<ResultPropertyDto>(query, parameters);
+
+            // Listeye dönüştür ve döndür
+            return properties.ToList();
+        }
+
+
+        public async Task<List<ResultPropertyDto>> GetAllPropertyAddressAsync()
+        {
+            const string query = "SELECT DISTINCT Adreess FROM Properties";
+
+            using var connection = _context.CreateConnection();
+            var properties = await connection.QueryAsync<ResultPropertyDto>(query);
+            //ResultPropertyAddressDto resultPropertyAddressDto = new ResultPropertyAddressDto();
+            //resultPropertyAddressDto.Adreess=properties.
+            return properties.ToList();
+        }
     }
-}
+    }
+
+

@@ -8,11 +8,26 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.35" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.17" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="10.1.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\ImagePropertyService\" />
+    <None Include="wwwroot\homeland-master\css\.DS_Store" />
+    <None Include="wwwroot\homeland-master\fonts\.DS_Store" />
+    <None Include="wwwroot\homeland-master\fonts\bigmug-line\.DS_Store" />
+    <None Include="wwwroot\homeland-master\fonts\flaticon-2\.DS_Store" />
+    <None Include="wwwroot\homeland-master\images\.DS_Store" />
+    <None Include="wwwroot\homeland-master\js\.DS_Store" />
+    <None Include="wwwroot\homeland-master\scss\.DS_Store" />
+    <None Include="wwwroot\homeland-master\scss\bootstrap\.DS_Store" />
+    <None Include="wwwroot\Ready-Bootstrap-Dashboard-master\.DS_Store" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
 
 </Project>

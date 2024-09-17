@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+@await Component.InvokeAsync("_LayoutHeadComponentPartial")
+<body>
+
+    <div class="site-loader"></div>
+
+    @await Component.InvokeAsync("_LayoutNavbarComponentPartial")
+
+   @*  @await Component.InvokeAsync("_LayoutCarauselComponentPartial") *@
+
+  @RenderBody()
+
+    @await Component.InvokeAsync("_LayoutFooterComponetPartial")
+
+
+    <script src="~/homeland-master/js/jquery-3.3.1.min.js"></script>
+    <script src="~/homeland-master/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/homeland-master/js/jquery-ui.js"></script>
+    <script src="~/homeland-master/js/popper.min.js"></script>
+    <script src="~/homeland-master/js/bootstrap.min.js"></script>
+    <script src="~/homeland-master/js/owl.carousel.min.js"></script>
+    <script src="~/homeland-master/js/mediaelement-and-player.min.js"></script>
+    <script src="~/homeland-master/js/jquery.stellar.min.js"></script>
+    <script src="~/homeland-master/js/jquery.countdown.min.js"></script>
+    <script src="~/homeland-master/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/homeland-master/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/homeland-master/js/aos.js"></script>
+
+    <script src="~/homeland-master/js/main.js"></script>
+
+</body>
+</html>

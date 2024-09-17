@@ -1,0 +1,100 @@
+﻿@using X.Web.PagedList
+@model X.PagedList.IPagedList<ResultPropertyDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+@await Component.InvokeAsync("_LayoutCarauselComponentPartial")
+
+@await Component.InvokeAsync("_LayoutFilterPropertyComponentPartial")
+        
+ <div class="site-section site-section-sm bg-light">
+    <div class="container">
+
+        <div class="row mb-5">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="property-entry h-100">
+                        <a href="/Property/PropertyDetail/@item.Id" class="property-thumbnail">
+                            <div class="offer-type-wrap">
+                                @if (item.OfferType == "Satılık")
+                                {
+                                    <span class="offer-type bg-danger">Satılık</span>
+                                }
+                                else if (item.OfferType == "Kiralık")
+                                {
+                                    <span class="offer-type bg-success">Kiralık</span>
+                                }
+                            </div>
+                            <img src="@item.ImageUrl" alt="Image" class="img-fluid">
+                        </a>
+                        <div class="p-4 property-body">
+                            <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                            <h2 class="property-title"><a href="property-details.html">@item.Title</a></h2>
+                            <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> @item.Adreess</span>
+                            <strong class="property-price text-primary mb-3 d-block text-success">$@item.Price</strong>
+                            <ul class="property-specs-wrap mb-3 mb-lg-0">
+                                <li>
+                                    <span class="property-specs">Oda</span>
+                                    <span class="property-specs-number">@item.Beds <sup>+</sup></span>
+
+                                </li>
+                                <li>
+                                    <span class="property-specs">Banyo</span>
+                                    <span class="property-specs-number">@item.Baths</span>
+
+                                </li>
+                                <li>
+                                    <span class="property-specs">Metre Kare</span>
+                                    <span class="property-specs-number">@item.SqFt</span>
+
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center d-flex justify-content-center">
+                <div class="site-pagination">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+                             new PagedListRenderOptions
+                    {
+
+                        // DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                        // DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                        // DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                        // DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                        LinkToPreviousPageFormat = "«",
+                        LinkToNextPageFormat = "»",
+                        LinkToFirstPageFormat = "First",
+                        LinkToLastPageFormat = "Last",
+                        LinkToIndividualPageFormat = "{0}",
+
+
+
+                    })
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+@await Component.InvokeAsync("_LayoutAboutComponentPartial")
+
+@await Component.InvokeAsync("_LayoutTestimonialComponentPartial")
+
+
+

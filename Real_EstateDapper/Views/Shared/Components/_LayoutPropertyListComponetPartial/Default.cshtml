@@ -1,0 +1,97 @@
+﻿@using X.Web.PagedList
+@model X.PagedList.IPagedList<ResultPropertyDto>
+
+
+<div class="site-section site-section-sm bg-light">
+    <div class="container">
+
+        <div class="row mb-5">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-4">
+                <div class="property-entry h-100">
+                    <a href="property-details.html" class="property-thumbnail">
+                        <div class="offer-type-wrap">
+                            <span class="offer-type bg-danger">Sale</span>
+                            <span class="offer-type bg-success">Rent</span>
+                        </div>
+                        <img src="@item.ImageUrl" alt="Image" class="img-fluid">
+                    </a>
+                    <div class="p-4 property-body">
+                        <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                        <h2 class="property-title"><a href="property-details.html">@item.Title</a></h2>
+                        <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> @item.Adreess</span>
+                        <strong class="property-price text-primary mb-3 d-block text-success">$@item.Price</strong>
+                        <ul class="property-specs-wrap mb-3 mb-lg-0">
+                            <li>
+                                <span class="property-specs">Oda</span>
+                                <span class="property-specs-number">@item.Beds <sup>+</sup></span>
+
+                            </li>
+                            <li>
+                                <span class="property-specs">Banyo</span>
+                                <span class="property-specs-number">@item.Baths</span>
+
+                            </li>
+                            <li>
+                                <span class="property-specs">Metre Kare</span>
+                                <span class="property-specs-number">@item.SqFt</span>
+
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            }
+            
+
+            
+        </div>
+        <div class="d-flex justify-content-center">
+            @Html.PagedListPager(Model, page => Url.Action("_LayoutPropertyListComponetPartial", new { page }),
+                     new PagedListRenderOptions
+            {
+                // İlk ve Son sayfa bağlantılarını göster
+                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                // Önceki ve Sonraki sayfa bağlantılarını göster
+                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                // Aktif sayfa için özel sınıf ekle
+                // ClassToApplyToActiveListItem = "active",
+                // Sayfa bağlantılarının listesine özel sınıf ekle
+                // UlElementClasses = "site-pagination",
+                // Önceki sayfa bağlantısı için HTML
+                LinkToPreviousPageFormat = "«",
+                // Sonraki sayfa bağlantısı için HTML
+                LinkToNextPageFormat = "»",
+                // İlk sayfa bağlantısı için HTML
+                LinkToFirstPageFormat = "First",
+                // Son sayfa bağlantısı için HTML
+                LinkToLastPageFormat = "Last",
+                // Sayfa bağlantılarının link formatını ayarla
+                LinkToIndividualPageFormat = "{0}",
+                // Devre dışı bırakılmış sayfa bağlantıları için sınıf ekle
+                // ClassToApplyToLiElements = "disabled"
+            })
+        </div>
+
+
+     @*   <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="site-pagination">
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <span>...</span>
+                    <a href="#">10</a>
+                </div>
+            </div>
+        </div>  *@
+
+    </div>
+</div>
+
