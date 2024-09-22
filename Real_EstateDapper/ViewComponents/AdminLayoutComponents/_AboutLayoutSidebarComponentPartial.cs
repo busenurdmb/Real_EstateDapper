@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace Real_EstateDapper.ViewComponents.AboutLayoutComponents
+namespace Real_EstateDapper.ViewComponents.AdminLayoutComponents
 {
-	public class _AboutLayoutSidebarComponentPartial:ViewComponent
+	public class _AdminLayoutSidebarComponentPartial : ViewComponent
 	{
 		
 

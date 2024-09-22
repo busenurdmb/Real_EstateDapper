@@ -1,26 +1,27 @@
-﻿<div class="site-section site-section-sm pb-0">
+﻿@model PropertyFilterModel
+ <div class="site-section site-section-sm pb-0">
     <div class="container">
         <div class="row">
 <form method="get" action="@Url.Action("LayoutPropertyList", "Property")" class="form-search col-md-12" style="margin-top: -100px;">
     <div class="row align-items-end">
 
         <div class="col-md-3">
-            <label for="offer-types">Offer Type</label>
+            <label for="offer-types">Durum</label>
             <div class="select-wrap">
                 <span class="icon icon-arrow_drop_down"></span>
-                <select name="offerType" id="offer-types" class="form-control d-block rounded-0">
+                <select asp-for="OfferType" id="offer-types" class="form-control d-block rounded-0">
                     <option value="">Durumu</option>
                     <option value="Satılık">Satılık</option>
-                    <option value="Kiralık">Kiralık</option>
+                    <option value="Kiralık" >Kiralık</option>
 
                 </select>
             </div>
         </div>
         <div class="col-md-3">
-            <label for="select-city">Select City</label>
+            <label for="select-city">Şehir</label>
             <div class="select-wrap">
                 <span class="icon icon-arrow_drop_down"></span>
-                <select name="city" id="select-city" class="form-control d-block rounded-0">
+                <select asp-for="City" id="select-city" class="form-control d-block rounded-0">
                     <option value="">Şehir</option>
                     @foreach (var address in @ViewBag.Addresses as List<ResultPropertyDto>)
                     {
@@ -30,14 +31,15 @@
             </div>
         </div>
         <div class="col-md-3">
-            <label for="category">Category</label>
+            <label for="category">Ev Tipi</label>
             <div class="select-wrap">
                 <span class="icon icon-arrow_drop_down"></span>
-                <select name="categoryId" id="category" class="form-control d-block rounded-0">
+                <select asp-for="CategoryId" id="category" class="form-control d-block rounded-0">
                     <option value="">Tür</option>
                     @foreach (var category in @ViewBag.Categories as IEnumerable<ResultCategoryDto>)
                     {
-                        <option value="@category.Id">@category.CategoryName</option>
+                  
+                         <option value="@category.Id">@category.CategoryName</option> 
                     }
                 </select>
             </div>
@@ -49,4 +51,9 @@
 </form>
         </div>
     </div>
-</div>
+
+
+
+
+
+

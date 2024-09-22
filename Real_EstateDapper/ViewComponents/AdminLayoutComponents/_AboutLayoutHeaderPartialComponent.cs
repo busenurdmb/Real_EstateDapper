@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Real_EstateDapper.ViewComponents.AboutLayoutComponents
+namespace Real_EstateDapper.ViewComponents.AdminLayoutComponents
 {
-    public class _AboutLayoutHeaderPartialComponent:ViewComponent
+    public class _AdminLayoutHeaderPartialComponent : ViewComponent
     {
         public IViewComponentResult Invoke()
         {

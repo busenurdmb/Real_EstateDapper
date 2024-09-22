@@ -1,0 +1,99 @@
+﻿@model List<ResultPropertyDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/_AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+
+<div class="content">
+    <div class="container-fluid">
+     
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                  
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div class="card-title">Emlak Listesi</div>
+                        <a href="Create" class="btn btn-outline-primary">Yeni Emlak Ekle</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Sistemde kayıtlı olan tüm emlaklar aşağıda listelenmiştir.
+                           
+                        </div>
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Başlık</th>
+                                    <th scope="col">Fiyat</th>
+                                    <th scope="col">Yatak</th>
+                                    <th scope="col">Banyo</th>
+                                    <th scope="col">Metrekare</th>
+                                    <th scope="col">Yapım Yılı</th>
+                                    <th scope="col">Adres</th>
+                                    <th scope="col">Durum</th>
+                                    <th scope="col">Sil</th>
+                                    <th scope="col">Güncelle</th>
+                                    <th scope="col">Detaylar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    count++;
+                                    <tr>
+                                        <th>@count</th>
+                                        <td>@item.Title</td>
+                                        <td>@item.Price.ToString("C")</td> <!-- Para birimi formatında gösterim -->
+                                        <td>@item.Beds</td>
+                                        <td>@item.Baths</td>
+                                        <td>@item.SqFt</td>
+                                        <td>@item.YearBuilt</td>
+                                        <td>@item.Adreess</td>
+                                        @if (item.OfferType == "Satılık")
+                                        {
+                                            <td class="badge badge-primary">@item.OfferType</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="badge badge-dark">@item.OfferType</td>
+                                        }
+                                        <td>
+                                            <a href="Delete/@item.Id" class="btn btn-danger">
+                                                <span class="icon text-white">
+                                                    <i class="la la-trash-o"></i>
+                                                </span>
+                                                <span class="text">Sil</span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="Update/@item.Id" class="btn btn-success">
+                                                <span class="icon text-white">
+                                                    <i class="la la-edit"></i>
+                                                </span>
+                                                <span class="text">Güncelle</span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="/Property/PropertyDetail/@item.Id" class="btn btn-info">
+                                                <span class="icon text-white">
+                                                    <i class="la la-info-circle"></i>
+                                                </span>
+                                                <span class="text">Detaylar</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

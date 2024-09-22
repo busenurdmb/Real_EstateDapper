@@ -1,6 +1,8 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Mvc;
 using Real_EstateDapper.Context;
 using Real_EstateDapper.Dto.PropertyDtos;
+using Real_EstateDapper.Models;
 
 namespace Real_EstateDapper.Services.PropertyService
 {
@@ -16,8 +18,8 @@ namespace Real_EstateDapper.Services.PropertyService
         public async Task CreatePropertyAsync(CreatePropertyDto createPropertyDto)
         {
             const string query = @"
-                INSERT INTO Properties (Price, Beds, Baths, SqFt, YearBuilt, PricePerSqFt, Description, CategoryId, CreatedAt)
-                VALUES (@Price, @Beds, @Baths, @SqFt, @YearBuilt, @PricePerSqFt, @Description, @CategoryId, GETDATE())";
+                INSERT INTO Properties (Price, Beds, Baths, SqFt, YearBuilt, PricePerSqFt, Description, CategoryId, CreatedAt,Title,ImageUrl,Adreess,OfferType,ImagePropertyId)
+                VALUES (@Price, @Beds, @Baths, @SqFt, @YearBuilt, @PricePerSqFt, @Description, @CategoryId, GETDATE(),@Title,@ImageUrl,@Adreess,@OfferType,@ImagePropertyId)";
 
             var parameters = new DynamicParameters();
             parameters.Add("@Price", createPropertyDto.Price);
@@ -28,6 +30,11 @@ namespace Real_EstateDapper.Services.PropertyService
             parameters.Add("@PricePerSqFt", createPropertyDto.PricePerSqFt);
             parameters.Add("@Description", createPropertyDto.Description);
             parameters.Add("@CategoryId", createPropertyDto.CategoryId);
+            parameters.Add("@Title", createPropertyDto.Title);
+            parameters.Add("@ImageUrl", createPropertyDto.ImageUrl);
+            parameters.Add("@Adreess", createPropertyDto.Adreess);
+            parameters.Add("@OfferType", createPropertyDto.OfferType);
+            parameters.Add("@ImagePropertyId", createPropertyDto.ImagePropertyId);
 
             using var connection = _context.CreateConnection();
             await connection.ExecuteAsync(query, parameters);
@@ -125,7 +132,9 @@ namespace Real_EstateDapper.Services.PropertyService
             await connection.ExecuteAsync(query, parameters);
         }
 
-        public async Task<List<ResultPropertyDto>> GetFilteredProperties(int? categoryId, string offerType, string city)
+	
+
+		public async Task<List<ResultPropertyDto>> GetFilteredProperties(int? categoryId, string offerType, string city)
         {
             // Başlangıç sorgusu
             var query = "SELECT * FROM Properties WHERE 1=1";

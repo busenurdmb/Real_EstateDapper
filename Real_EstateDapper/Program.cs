@@ -2,6 +2,7 @@ using Real_EstateDapper.Context;
 using Real_EstateDapper.Services.AboutUsService;
 using Real_EstateDapper.Services.CategoryService;
 using Real_EstateDapper.Services.ImagePropertyService;
+using Real_EstateDapper.Services.MovieService;
 using Real_EstateDapper.Services.PropertyService;
 using Real_EstateDapper.Services.TestimonialService;
 
@@ -16,6 +17,7 @@ builder.Services.AddScoped<IPropertyService, PropertyService>();
 builder.Services.AddScoped<IImagePropertySevice, ImagePropertyService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ITestimonialService, TestimonialService>();
+builder.Services.AddScoped<IMovieService, MovieService>();
 
 builder.Services.AddControllersWithViews();
 

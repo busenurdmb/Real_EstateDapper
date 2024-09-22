@@ -1,0 +1,372 @@
+﻿ @model MovieStatisticsDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/_AdminLayout/Index.cshtml";
+}
+
+<style>
+    .card-body {
+        color: white; /* Yazı rengini beyaz yap */
+    }
+
+        .card-body .icon-big i {
+            color: white; /* İkon rengini beyaz yap */
+        }
+        .card-body .numbers p{
+            color: white;
+        }
+
+        .card-body .numbers h4 {
+            color: white;
+        }
+</style>
+
+
+
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Dashboard Sayfası</h4>
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="card card-stats" style="background-color: #e84393;">
+                    @* Kırmızı *@
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-video-camera"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">Toplam Film Sayısı</p>
+                                    <h4 class="card-title">@Model.TotalMovies</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card card-stats" style="background-color: #d63031;">
+                    @* Turuncu *@
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-star"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">Ortalama IMDB Puanı</p>
+                                    <h4 class="card-title">@Model.AverageRating</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card card-stats" style="background-color: #e17055;">
+                    @* Sarı *@
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-star-half-o"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">En Yüksek Puan</p>
+                                    <h4 class="card-title">@Model.HighestRating</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card card-stats" style="background-color: #fdcb6e;">
+                    @* Yeşil *@
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-thumbs-down"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">En Düşük Puan</p>
+                                    <h4 class="card-title">@Model.LowestRating</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card card-stats" style="background-color: #fd79a8;">
+                    @* Mavi *@
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-user"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">Toplam Yönetmen Sayısı</p>
+                                    <h4 class="card-title">@Model.TotalDirectors</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card card-stats" style="background-color:#ff7675;">
+                    @* Mor *@
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-pencil"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">Toplam Yazar Sayısı</p>
+                                    <h4 class="card-title">@Model.TotalWriters</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card card-stats" style="background-color:#fab1a0;">
+                    @* Pembe *@
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-star"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">Toplam Yıldız Sayısı</p>
+                                    <h4 class="card-title">@Model.TotalStars</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card card-stats" style="background-color: #ffeaa7">
+                    @* Açık Sarı *@
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-folder-open"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">Toplam Tür Sayısı</p>
+                                    <h4 class="card-title">@Model.TotalGenres</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card card-stats" style="background-color:#6c5ce7;">
+                    @* Kahverengi *@
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">2023'te' Çıkan Filmler</p>
+                                    <h4 class="card-title">@Model.MoviesReleasedThisYear</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card card-stats" style="background-color: #0984e3;">
+                    @* Mavi-Grey *@
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-clock-o"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">Ortalama Süre</p>
+                                    <h4 class="card-title">@Model.AverageLength</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card card-stats" style="background-color: #00cec9;">
+                    @* Açık Kahverengi *@
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-arrow-up"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">Yüksek Puanlı Filmler</p>
+                                    <h4 class="card-title">@Model.MoviesAboveRating</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card card-stats" style="background-color: #00b894;">
+                    @* Bej *@
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-arrow-down"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">Düşük Puanlı Filmler</p>
+                                    <h4 class="card-title">@Model.MoviesBelowRating</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card card-stats" style="background-color: #a29bfe;">
+                    @* Açık Mavi *@
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-file-text"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">Özeti Olan Filmler</p>
+                                    <h4 class="card-title">@Model.MoviesWithPlot</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card card-stats" style="background-color: #74b9ff;">
+                    @* Açık Gri *@
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-picture-o"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">Afişi Olan Filmler</p>
+                                    <h4 class="card-title">@Model.MoviesWithPoster</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card card-stats" style="background-color: #81ecec;">
+                    @* Açık Mavi Tonu *@
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-star"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">Yıldızlı Filmler</p>
+                                    <h4 class="card-title">@Model.MoviesWithStarCount</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card card-stats" style="background-color: #55efc4;">
+                    @* Açık Pembe *@
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="la la-folder"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 d-flex align-items-center">
+                                <div class="numbers">
+                                    <p class="card-category">Aksiyon Türünde Filmler</p>
+                                    <h4 class="card-title">@Model.MoviesByGenre</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

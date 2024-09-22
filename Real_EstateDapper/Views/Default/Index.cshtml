@@ -7,7 +7,7 @@
 
 @await Component.InvokeAsync("_LayoutCarauselComponentPartial")
 
-@await Component.InvokeAsync("_LayoutFilterPropertyComponentPartial")
+@await Component.InvokeAsync("_LayoutFilterPropertyComponentPartial", new { model = ViewBag.FilterModel })
         
  <div class="site-section site-section-sm bg-light">
     <div class="container">

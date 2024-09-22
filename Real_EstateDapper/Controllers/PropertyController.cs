@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Real_EstateDapper.Models;
 using Real_EstateDapper.Services.CategoryService;
 using Real_EstateDapper.Services.PropertyService;
 using X.PagedList.Extensions;
@@ -28,26 +29,36 @@ namespace Real_EstateDapper.Controllers
             // Tüm mülkleri al
             var allProperties = await _propertyService.GetFilteredProperties(categoryId, offerType, city);
 
-            //// Filtreleme işlemleri
-            //if (!string.IsNullOrEmpty(offerType))
-            //{
-            //    allProperties = allProperties.Where(p => p.OfferType == offerType).ToList();
-            //}
-            //if (!string.IsNullOrEmpty(city))
-            //{
-            //    allProperties = allProperties.Where(p => p.Adreess == city).ToList();
-            //}
-            //if (categoryId.HasValue)
-            //{
-            //    allProperties = allProperties.Where(p => p.CategoryId == categoryId.Value).ToList();
-            //}
+			//// Filtreleme işlemleri
+			//if (!string.IsNullOrEmpty(offerType))
+			//{
+			//    allProperties = allProperties.Where(p => p.OfferType == offerType).ToList();
+			//}
+			//if (!string.IsNullOrEmpty(city))
+			//{
+			//    allProperties = allProperties.Where(p => p.Adreess == city).ToList();
+			//}
+			//if (categoryId.HasValue)
+			//{
+			//    allProperties = allProperties.Where(p => p.CategoryId == categoryId.Value).ToList();
+			//}
+			var filterModel = new PropertyFilterModel
+			{
+				CategoryId = categoryId,
+				OfferType = offerType,
+				City = city
+			};
+            ViewBag.model= filterModel;
 
-            // Sayfalama işlemi
-            int pageNumber = page ?? 1;
+			// Sayfalama işlemi
+
+			int pageNumber = page ?? 1;
             var pagedList = allProperties.ToPagedList(pageNumber, 9);
 
             return View(pagedList);
         }
+
+
 
         public async Task<IActionResult> PropertyDetail(int id)
         {

@@ -1,0 +1,148 @@
+﻿@using X.Web.PagedList
+@model X.PagedList.IPagedList<ResultMovieDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/_AdminLayout/Index.cshtml";
+}
+
+
+
+<div class="content">
+    <div>
+        <!-- Filtreleme Formu -->
+        <form method="get" action="@Url.Action("Index", "Movie")" class="mb-4">
+            <div class="row">
+                <div class="col-md-12 d-flex">
+                    <div class="input-group flex-grow-1">
+                        <input type="text" placeholder="Aranacak Kelime..." name="Title" class="form-control">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="la la-search search-icon"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary ml-2">Filtrele</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Film Listesi</div>
+                </div>
+                <div class="card-body">
+                @*     <div class="card-sub">
+                        Film ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
+                    </div> *@
+
+                    @* <div class="table-responsive mt-3"> *@
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col" >#</th>
+                                    <th scope="col" >Başlık</th>
+                                    <th scope="col" >Açıklama</th>
+                                    <th scope="col" >Yayın Yılı</th>
+                                    <th scope="col" >Süre</th>
+                                    <th scope="col" >IMDB Puanı</th>
+                               
+                                    <th scope="col" >Türler</th>
+                                    <th scope="col" >Detaylar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img src="@item.Poster" style="width: 100px; height: 100px;" alt="Poster" />
+                                        </td>
+                                        <td>@item.Title</td>
+                                        <td >@item.Plot.Substring(0, 150)...</td>
+                                    <td><span class="badge badge-primary">@((int)item.Release_Year / 10) </span></td>
+
+                                    <td> 
+                                        <span class="badge badge-dark">@item.Length_In_Min dk </span>
+                                        </td>
+                                    <td >
+                                        <span class="badge badge-danger" >@item.IMDB_Rating</span>
+                                    </td>
+                               
+                                        <td>@item.Genres</td>
+                                        <td class="text-center">
+                                            <a href="/Admin/Movie/Details/@item.Id" data-toggle="modal" data-target="#movieModal-@item.Id" class="btn btn-info btn-sm">
+                                                <i class="la la-edit"></i> Detaylar
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="movieModal-@item.Id" tabindex="-1" aria-labelledby="movieModalLabel-@item.Id" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="movieModalLabel-@item.Id">@item.Title</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <img src="@item.Poster" class="img-fluid" alt="@item.Title">
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                        <div><strong><span class="badge badge-warning">Açıklama:</span></strong> @item.Plot</div>
+                                                        <div><strong><span class="badge badge-primary">Yayın Yılı:</span></strong> @((int)item.Release_Year / 10)</div>
+                                                        <div><strong><span class="badge badge-dark">Süre:</span></strong> @item.Length_In_Min dk</div>
+                                                        <div><strong><span class="badge badge-danger">IMDB Puanı:</span></strong> @item.IMDB_Rating</div>
+                                                        <div><strong><span class="badge badge-default">Yönetmenler:</span></strong> @item.Directors</div>
+                                                        <div><strong><span class="badge badge-default">Senaristler:</span></strong> @item.Writers</div>
+                                                        <div><strong><span class="badge badge-default">Oyuncular:</span></strong> @item.Stars</div>
+                                                        <div><strong><span class="badge badge-success">Türler:</span></strong> @item.Genres</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </tbody>
+                        </table>
+                   @*  </div> *@
+                    </div>
+
+                   
+                    
+
+                    <!-- Sayfalama Butonları -->
+                    <div class="d-flex justify-content-center">
+                        @Html.PagedListPager(Model, page => Url.Action("GetMovieList", new { page }),
+                                 new PagedListRenderOptions
+                        {
+                            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                            DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                            DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                            DisplayItemSliceAndTotal = true,
+                            Display = PagedListDisplayMode.IfNeeded,
+                            MaximumPageNumbersToDisplay = 5
+                        })
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+

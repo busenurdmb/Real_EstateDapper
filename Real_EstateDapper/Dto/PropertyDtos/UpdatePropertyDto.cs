@@ -14,5 +14,9 @@
 
         public int? ImagePropertyId { get; set; }
         public DateTime CreatedAt { get; set; }
+        public string ImageUrl { get; set; }
+        public string Adreess { get; set; }
+        public string Title { get; set; }
+        public string OfferType { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Real_EstateDapper.Models;
 using Real_EstateDapper.Services.CategoryService;
 using Real_EstateDapper.Services.PropertyService;
 
@@ -15,14 +16,14 @@ namespace Real_EstateDapper.ViewComponents
             _categoryService = categoryService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(PropertyFilterModel? model)
         {
             var categories = await _categoryService.GetAllCategoryAsync();
             var addresses = await _propertyService.GetAllPropertyAddressAsync();
 
             ViewBag.Categories = categories;
             ViewBag.Addresses = addresses;
-            return View();
+            return View(model);
         }
     }
 }

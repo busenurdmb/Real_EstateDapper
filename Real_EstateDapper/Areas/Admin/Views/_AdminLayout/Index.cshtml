@@ -4,24 +4,24 @@
 
 <!DOCTYPE html>
 <html>
-@await Component.InvokeAsync("_AboutLayoutHeaderPartialComponent")
+@await Component.InvokeAsync("_AdminLayoutHeaderPartialComponent")
 <body>
 	<div class="wrapper">
-		@await Component.InvokeAsync("_AboutLayoutNavbarComponentPartial")
+		@await Component.InvokeAsync("_AdminLayoutNavbarComponentPartial")
 
 
-		@await Component.InvokeAsync("_AboutLayoutSidebarComponentPartial")
+		@await Component.InvokeAsync("_AdminLayoutSidebarComponentPartial")
 		
 
 
 		<div class="main-panel">
 
-			@* @RenderBody() *@
+			 @RenderBody() 
 
-			@await Component.InvokeAsync("_AboutLayoutFooterComponentPartial")
+			@await Component.InvokeAsync("_AdminLayoutFooterComponentPartial")
 		</div>
 	</div>
-	@await Component.InvokeAsync("_AboutLayoutScriptComponentPartial")
+	@await Component.InvokeAsync("_AdminLayoutScriptComponentPartial")
 </body>
 </html>
 

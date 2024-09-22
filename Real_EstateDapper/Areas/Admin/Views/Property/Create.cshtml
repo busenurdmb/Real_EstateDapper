@@ -1,0 +1,125 @@
+﻿@model CreatePropertyDto
+@{
+    ViewData["Title"] = "Create Property";
+    Layout = "~/Areas/Admin/Views/_AdminLayout/Index.cshtml";
+}
+<div class="content">
+    <div class="container-fluid">
+   
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Yeni Emlak Girişi</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Fiyat</label>
+                                        <input type="number" class="form-control" asp-for="Price" placeholder="Fiyat Giriniz" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Başlık</label>
+                                        <input type="text" class="form-control" asp-for="Title" placeholder="Başlık Giriniz" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Yatak Sayısı</label>
+                                        <input type="number" class="form-control" asp-for="Beds" placeholder="Yatak Sayısı Giriniz" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Banyo Sayısı</label>
+                                        <input type="number" class="form-control" asp-for="Baths" placeholder="Banyo Sayısı Giriniz" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Metrekare</label>
+                                        <input type="number" class="form-control" asp-for="SqFt" placeholder="Metrekare Giriniz" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Yapım Yılı</label>
+                                        <input type="number" class="form-control" asp-for="YearBuilt" placeholder="Yapım Yılı Giriniz" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Metrekare Başına Fiyat</label>
+                                        <input type="number" class="form-control" asp-for="PricePerSqFt" placeholder="Metrekare Başına Fiyat Giriniz" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Resim URL</label>
+                                        <input type="text" class="form-control" asp-for="ImageUrl" placeholder="Resim URL'si" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Açıklama</label>
+                                <textarea rows="5" class="form-control" id="summernote" asp-for="Description" placeholder="Açıklama Giriniz"></textarea>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Kategori</label>
+                                        <select class="form-control" asp-for="CategoryId">
+                                            <option value="">Tür</option>
+                                            @foreach (var category in @ViewBag.Categories as IEnumerable<ResultCategoryDto>)
+                                            {
+                                                <option value="@category.Id">@category.CategoryName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Adres</label>
+                                        <input type="text" class="form-control" asp-for="Adreess" placeholder="Adres" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Teklif Türü</label>
+                                        <input type="text" class="form-control" asp-for="OfferType" placeholder="Teklif Türü" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Oluşturulma Tarihi</label>
+                                        <input type="datetime" class="form-control" asp-for="CreatedAt" value="@DateTime.Now" readonly />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary mr-2">Emlak Oluştur</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
